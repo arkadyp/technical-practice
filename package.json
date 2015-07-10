@@ -3,7 +3,10 @@
   "version": "0.0.1",
   "description": "practice technical coding challenges\"",
   "scripts": {
-    "dev": "webpack --watch"
+    "dev": "webpack --watch",
+    "test": "npm run es5 && mocha --compilers js:babel/register",
+    "es5": "babel src --out-dir es5",
+    "es5-watch" : "babel src --watch --out-dir es5 "
   },
   "repository": {
     "type": "git",
@@ -16,8 +19,11 @@
   },
   "homepage": "https://github.com/arkadyp/technical-practice",
   "devDependencies": {
+    "babel": "^5.6.14",
     "babel-core": "^5.6.17",
     "babel-loader": "^5.3.1",
+    "chai": "^3.0.0",
+    "mocha": "^2.2.5",
     "webpack": "^1.10.1"
   }
 }
