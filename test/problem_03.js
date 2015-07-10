@@ -1,7 +1,7 @@
 var expect = require("chai").expect;
 var greatest_product_of_three = require('../es5/3_highest_product_of_three_ints/index');
 
-describe("Greatest product of three integers", function(){
+describe("Problem 3: Greatest product of three integers", function(){
     it('should export a function', function() {
         expect(typeof(greatest_product_of_three)).to.equal('function')
     });
