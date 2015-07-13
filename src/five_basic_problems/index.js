@@ -108,42 +108,33 @@ function form_largest_number(_ints) {
 
 function addition_subtraction_string(target, range) {
     var result = [];
-
-    var subroutine = function(currentTotal, index, str, value) {
-        var value = value || range[index];
+    var subroutine = function(index, total, value, str) {
         if (index >= range.length - 1) {
-            // console.log('--------------------------------');
-            // console.log(index, range.length - 1);
-            // console.log(`${str} ? ${value} => ${currentTotal}`);
-            if (currentTotal + value === target) {
+            if (value + total === target) {
                 str += `+${value}|`;
                 return result.push(str);
             }
-            else if (currentTotal - value === target) {
-                str -= ` -${value}|`;
-                return result.push(str)
+            else if (total - value === target) {
+                str += `-${value}|`;
+                return result.push(str);
             }
-            else {
-                // console.log(`${str} ? ${value} => ${currentTotal}`);
-                return null;
-            }
+            else return null;
         }
 
-        // try adding number
-        subroutine(currentTotal + value, index + 1, str + `+${value}| `)
+        var nextValueInRange = range[index + 1];
 
-        // try subtracting number
-        subroutine(currentTotal - value, index + 1, str + `-${value}| `)
-        
-        // concat
-        var value = Number('' + value + range[index + 1]);
-        subroutine(currentTotal, index + 1, str, value);
+        // try to add
+        subroutine(index + 1, total + value, nextValueInRange, str + `+${value}|`);
+
+        // try to subtract
+        subroutine(index + 1, total - value, nextValueInRange, str + `-${value}|`);
+
+        // try to concat
+        var concatNumber = Number('' + value + nextValueInRange);
+        subroutine(index + 1, total, concatNumber, str);
     }
 
-    subroutine(target, 0, '');
-    console.log('//////////////////////////////');
-    console.log(result);
-    console.log('//////////////////////////////');
+    subroutine(0, 0, range[0], '');
     return result;
 }
 
@@ -157,7 +148,6 @@ module.exports = {
     form_largest_number: form_largest_number,
     addition_subtraction_string: addition_subtraction_string
 }
-
 
 // Problem 1
 // Write three functions that compute the sum of the numbers in

@@ -69,8 +69,8 @@ describe("Five basic problems", function(){
 
     describe('should be able to calculate addition/subtraction string', function() {
         it ('should find all ways to get to 100 with 1 through 9', function() {
-            // var result = addition_subtraction_string(100, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
-            // expect(result.length).to.equal(11)
+            var result = addition_subtraction_string(100, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+            expect(result.length).to.equal(12)
         });
     })
 })
