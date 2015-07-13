@@ -106,6 +106,47 @@ function form_largest_number(_ints) {
     return +numberStr;
 }
 
+function addition_subtraction_string(target, range) {
+    var result = [];
+
+    var subroutine = function(currentTotal, index, str, value) {
+        var value = value || range[index];
+        if (index >= range.length - 1) {
+            // console.log('--------------------------------');
+            // console.log(index, range.length - 1);
+            // console.log(`${str} ? ${value} => ${currentTotal}`);
+            if (currentTotal + value === target) {
+                str += `+${value}|`;
+                return result.push(str);
+            }
+            else if (currentTotal - value === target) {
+                str -= ` -${value}|`;
+                return result.push(str)
+            }
+            else {
+                // console.log(`${str} ? ${value} => ${currentTotal}`);
+                return null;
+            }
+        }
+
+        // try adding number
+        subroutine(currentTotal + value, index + 1, str + `+${value}| `)
+
+        // try subtracting number
+        subroutine(currentTotal - value, index + 1, str + `-${value}| `)
+        
+        // concat
+        var value = Number('' + value + range[index + 1]);
+        subroutine(currentTotal, index + 1, str, value);
+    }
+
+    subroutine(target, 0, '');
+    console.log('//////////////////////////////');
+    console.log(result);
+    console.log('//////////////////////////////');
+    return result;
+}
+
 module.exports = {
     for_loop_sum: for_loop_sum,
     while_loop_sum: while_loop_sum,
@@ -113,7 +154,8 @@ module.exports = {
     combine_lists: combine_lists,
     fibonacci_for_loop: fibonacci_for_loop,
     fibonacci_recursion: fibonacci_recursion,
-    form_largest_number: form_largest_number
+    form_largest_number: form_largest_number,
+    addition_subtraction_string: addition_subtraction_string
 }
 
 

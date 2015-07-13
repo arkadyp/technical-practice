@@ -7,6 +7,7 @@ var combine_lists = require('../es5/five_basic_problems').combine_lists;
 var fibonacci_for_loop = require('../es5/five_basic_problems').fibonacci_for_loop;
 var fibonacci_recursion = require('../es5/five_basic_problems').fibonacci_recursion;
 var form_largest_number = require('../es5/five_basic_problems').form_largest_number;
+var addition_subtraction_string = require('../es5/five_basic_problems').addition_subtraction_string;
 
 
 describe("Five basic problems", function(){
@@ -65,6 +66,13 @@ describe("Five basic problems", function(){
             expect(form_largest_number([50, 2, 1, 91, 90])).to.equal(91905021);
         });
     });
+
+    describe('should be able to calculate addition/subtraction string', function() {
+        it ('should find all ways to get to 100 with 1 through 9', function() {
+            // var result = addition_subtraction_string(100, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+            // expect(result.length).to.equal(11)
+        });
+    })
 })
 
 
