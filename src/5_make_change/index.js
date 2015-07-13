@@ -22,8 +22,6 @@ function make_change(total, _denom) {
     return count;
 }
 
-window.make_change = make_change;
-
 module.exports = make_change;
 
 // try to recursive, memoized
