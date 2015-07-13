@@ -75,13 +75,45 @@ function fibonacci_recursion(count) {
     return result;
 }
 
+function form_largest_number(_ints) {
+    
+    // return number with higher first digit
+        // if digits are equal, go to second digit
+        // if one number doesn't have second digit, return 'shorter' number
+    var sort_by_first_digit = function(_a, _b) {
+        var a = '' + _a;
+        var b = '' + _b;
+
+        if (a[0] > b[0]) {
+            return -1;
+        }
+        else if (a[0] < b[0]) {
+            return 1;
+        }
+        else {
+            if (a[1] === undefined) return -1;
+            else if (b[1] === undefined) return 1;
+            else {
+                return sort_by_first_digit(Number(a.slice(1)), Number(b.slice(1)))
+            }
+        }
+    }
+
+    var numberStr =  _ints.slice()
+                        .sort(sort_by_first_digit)
+                        .reduce((str, item) => str + item, '');
+
+    return +numberStr;
+}
+
 module.exports = {
     for_loop_sum: for_loop_sum,
     while_loop_sum: while_loop_sum,
     recursive_sum: recursive_sum,
     combine_lists: combine_lists,
     fibonacci_for_loop: fibonacci_for_loop,
-    fibonacci_recursion: fibonacci_recursion
+    fibonacci_recursion: fibonacci_recursion,
+    form_largest_number: form_largest_number
 }
 
 
@@ -103,11 +135,19 @@ module.exports = {
 //  8, 13, 21, and 34.
 
 // Problem 4
+// Write a function that given a list of non negative integers, arranges them
+// such that they form the largest possible number. For example, 
+// given [50, 2, 1, 9], the largest formed number is 95021.
 
-// Write a function that given a list of non negative integers, arranges them such that they form the largest possible number. For example, given [50, 2, 1, 9], the largest formed number is 95021.
-
-// Update: Apparently this problem got a lot of people talking (although not as much as Problem 5 below.) You can click here to read my solution.
+// Update: Apparently this problem got a lot of people talking
+// (although not as much as Problem 5 below.) You can click here to read my solution.
 
 // Problem 5
+// Write a program that outputs all possibilities to put + or - or nothing 
+// between the numbers 1, 2, ..., 9 (in this order) such that the result is 
+// always 100. For example: 1 + 2 + 34 – 5 + 67 – 8 + 9 = 100.
 
-// Write a program that outputs all possibilities to put + or - or nothing between the numbers 1, 2, ..., 9 (in this order) such that the result is always 100. For example: 1 + 2 + 34 – 5 + 67 – 8 + 9 = 100.
+
+
+
+

@@ -6,6 +6,7 @@ var recursive_sum = require('../es5/five_basic_problems').recursive_sum;
 var combine_lists = require('../es5/five_basic_problems').combine_lists;
 var fibonacci_for_loop = require('../es5/five_basic_problems').fibonacci_for_loop;
 var fibonacci_recursion = require('../es5/five_basic_problems').fibonacci_recursion;
+var form_largest_number = require('../es5/five_basic_problems').form_largest_number;
 
 
 describe("Five basic problems", function(){
@@ -44,6 +45,24 @@ describe("Five basic problems", function(){
 
         it('shouldnt take forever using recursion', function() {
             assert.isNumber(fibonacci_recursion(1000)[1000]);
+        });
+    });
+
+    describe('should be able to form largest number given array of ints', function() {
+        it ('should work with [50, 2, 1, 9]', function() {
+            expect(form_largest_number([50, 2, 1, 9])).to.equal(95021);
+        });
+
+        it ('should work with [50, 2, 1, 90]', function() {
+            expect(form_largest_number([50, 2, 1, 90])).to.equal(905021);
+        });
+
+        it ('should work with [50, 2, 1, 9, 90]', function() {
+            expect(form_largest_number([50, 2, 1, 9, 90])).to.equal(9905021);
+        });
+
+        it ('should work with [50, 2, 1, 91, 90]', function() {
+            expect(form_largest_number([50, 2, 1, 91, 90])).to.equal(91905021);
         });
     });
 })
