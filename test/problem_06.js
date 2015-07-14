@@ -75,4 +75,29 @@ describe("Problem 6: find rectangle", function(){
         var intersection_rectangle = find_rectangle(rectangle1, rectangle2);
         expect(intersection_rectangle).to.deep.equal(null);
     });
+
+    it('should work with negative numbers', function(){
+        var rectangle1 = {
+            x: -10,
+            y: -10,
+            height: 10,
+            width: 10
+        };
+
+        var rectangle2 = {
+            x: -5,
+            y: -2,
+            height: 100,
+            width: 100
+        };
+
+        var intersection_rectangle = find_rectangle(rectangle1, rectangle2);
+        var expected_intersection = {
+            x: -5,
+            y: -2,
+            height: 2,
+            width: 5
+        };
+        expect(intersection_rectangle).to.deep.equal(expected_intersection);
+    });
 });

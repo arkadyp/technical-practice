@@ -29,7 +29,7 @@
 // }
 // Your output rectangle should use this format as well.
 
-function find_rectangle(_rect1, _rect2) {
+function find_rectangle_original(_rect1, _rect2) {
     var rect1 = {
         bottom_left: [_rect1.x, _rect1.y],
         top_right: [_rect1.x + _rect1.width, _rect1.y + _rect1.height]
@@ -83,6 +83,50 @@ function find_rectangle(_rect1, _rect2) {
     }
 
     return {};
+}
+
+///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+
+// return an array that is a range or null
+function find_overlap (range1, range2) {
+    var first_range = range1[0] <= range2[0] ? range1: range2;
+    var second_range = first_range === range1 ? range2 : range1;
+
+    if (first_range[1] < second_range[0]) {
+        return null;
+    }
+    else {
+        return [
+            second_range[0],
+            Math.min(first_range[1], second_range[1])
+        ];
+    }
+}
+
+function find_rectangle(_rect1, _rect2) {
+    var overlap_x = find_overlap(
+        [_rect1.x, _rect1.x + _rect1.width],
+        [_rect2.x, _rect2.x + _rect2.width]
+    );
+
+    var overlap_y = find_overlap(
+        [_rect1.y, _rect1.y + _rect1.height],
+        [_rect2.y, _rect2.y + _rect2.height]
+    );
+
+    if (overlap_x === null || overlap_y === null) {
+        return null;
+    }
+    else {
+        return {
+            x: overlap_x[0],
+            y: overlap_y[0],
+            width: overlap_x[1] - overlap_x[0],
+            height: overlap_y[1] - overlap_y[0]
+        }
+    }
 }
 
 module.exports = find_rectangle;
