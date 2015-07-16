@@ -16,4 +16,9 @@ describe("Problem 14: two array values match sum", function() {
         var result = two_movies_match_flight_length(10, [1, 2, 3, 4, 8, 12, 6]);
         expect(result).to.equal(true);
     });
+
+    it('should return false if one movie is half the flight length', function(){
+        var result = two_movies_match_flight_length(10, [1, 2, 3, 4, 5, 12, 3]);
+        expect(result).to.equal(false);
+    });
 });
