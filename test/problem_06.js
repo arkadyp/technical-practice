@@ -100,4 +100,29 @@ describe("Problem 6: find rectangle", function(){
         };
         expect(intersection_rectangle).to.deep.equal(expected_intersection);
     });
+
+    it('should work with two poitns touching', function(){
+        var rectangle1 = {
+            x: 0,
+            y: 0,
+            height: 10,
+            width: 50
+        };
+
+        var rectangle2 = {
+            x: 0,
+            y: 0,
+            height: 5,
+            width: 500
+        };
+
+        var intersection_rectangle = find_rectangle(rectangle1, rectangle2);
+        var expected_intersection = {
+            x: 0,
+            y: 0,
+            height: 5,
+            width: 50
+        };
+        expect(intersection_rectangle).to.deep.equal(expected_intersection);
+    });
 });
